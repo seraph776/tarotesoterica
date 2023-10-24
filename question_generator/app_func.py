@@ -10,17 +10,21 @@ import datetime
 import random
 
 
+
 def open_file(filename):
     with open(filename) as fo:
         res = [i.strip() for i in fo]
         res = sorted(res)
         return res
 
+
 def color_text(t):
-    return f"\033[36m{t}\033[0m"
+    return f"\033[33m{t}\033[0m"
+    
+
 def get_three_card_spread():
     s1 = ('past', 'present', 'future')
-    s2 = ('creator', 'sustainer', 'destroyer')
+    s2 = ('create', 'sustain', 'destroy')
     s3 = ('mind', 'body', 'spirit')
     s4 = ('situation', 'problems', 'solutions')
     s5 = ('stop', 'start', 'continue')
@@ -56,9 +60,7 @@ def get_results():
     three_card_2 = raw_three_card_spead[1].upper()
     three_card_3 = raw_three_card_spead[2].upper()
 
-    three_card_spread = f'{three_card_1} | {three_card_2} | {three_card_3}'
-
-
+    
     # Alternate five-card spread
     raw_five_card_spead = get_five_card_spread()
     five_card_1 = raw_five_card_spead[0].upper()
@@ -67,15 +69,18 @@ def get_results():
     five_card_4 = raw_five_card_spead[3].upper()
     five_card_5 = raw_five_card_spead[4].upper()
 
+    
+   # Create spreads:
+    three_card_spread = f'{three_card_1} | {three_card_2} | {three_card_3}'
     five_card_spread = f'{five_card_1} | {five_card_2} | {five_card_3} | {five_card_4} | {five_card_5}'
-
+    
 
     result = f"""
     Date: {date_result}
     Question: {question}
     
-    Three-card spread: {color_text(three_card_spread)}
-    Five-card spread: {color_text(five_card_spread)}  
+    >>> Three-card spread: {three_card_spread}
+    >>> Five-card spread: {five_card_spread}  
     """
 
     return result
